@@ -11,11 +11,10 @@ const CircleButton = styled.div`
   &:active {
     background: ${darken(0.1, "gray")};
   }
-  /* 
+
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  display: block;
   border: none;
   outline: none;
   cursor: pointer;
@@ -28,27 +27,6 @@ const CircleButton = styled.div`
   z-index: 5;
   cursor: pointer;
   transform: translate(-50%, 50%);
-  transition: 0.125s all ease-in; */
-  z-index: 5;
-  cursor: pointer;
-  width: 80px;
-  height: 80px;
-  display: block;
-  align-items: center;
-  justify-content: center;
-  font-size: 60px;
-  position: absolute;
-  left: 50%;
-  bottom: 0px;
-  transform: translate(-50%, 50%);
-  color: white;
-  border-radius: 50%;
-  border: none;
-  outline: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   transition: 0.125s all ease-in;
   ${(props) =>
     props.open &&
@@ -68,6 +46,7 @@ const InsertFormPositioner = styled.div`
   position: absolute;
   bottom: 0;
   left: 0;
+  transition: 0.125s;
 `;
 
 const InsertForm = styled.div`
@@ -105,18 +84,6 @@ function TodoCreate() {
         <MdAdd />
       </CircleButton>
     </>
-    //     <>
-    //       {open && (
-    //         <InsertFormPositioner>
-    //           <InsertForm>
-    //             <Input autoFocus placeholder="할 일을 입력 후, Enter 를 누르세요" />
-    //           </InsertForm>
-    //         </InsertFormPositioner>
-    //       )}
-    //       <CircleButton onClick={onToggle} open={open}>
-    //         <MdAdd />
-    //       </CircleButton>
-    //     </>
   );
 }
 
