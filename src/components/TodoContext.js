@@ -26,11 +26,13 @@ const initialTodos = [
 function todoReducer(state, action) {
   switch (action.type) {
     case "CREATE":
-      console.log(1);
+      return state.concat(action.todo);
     case "TOGGLE":
-      console.log(2);
+      return state.map((todo) =>
+        todo.id === action.id ? { ...todo, done: !todo.done } : todo
+      );
     case "REMOVE":
-      console.log(3);
+      return state.filter((todo) => todo.id !== action.id);
     default:
       throw new Error(`unhandled action case:${action.type}`);
   }

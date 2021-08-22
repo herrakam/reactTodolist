@@ -2,6 +2,7 @@ import React from "react";
 import { MdDone, MdDelete } from "react-icons/md";
 import styled, { css } from "styled-components";
 import { lighten } from "polished";
+import { useTodoDispatch, useTodoNextId, useTodoState } from "./TodoContext";
 
 const Remove = styled.div`
   opacity: 0;
@@ -53,14 +54,29 @@ const Text = styled.div`
     `}
 `;
 
-function TodoItem({ text, done }) {
+function TodoItem({ text, done, id }) {
+  const dispatch = useTodoDispatch();
+  const onToggle = () => {
+    dispatch({
+      type: "TOGGLE",
+      id,
+    });
+  };
+  const onRemove = () => {
+    dispatch({
+      type: "REMOVE",
+      id,
+    });
+  };
   return (
     <TodoItemBlock>
-      <CheckCircle done={done}>
+      <CheckCircle done={done} onClick={onToggle}>
         {done && <MdDone done={done}></MdDone>}
       </CheckCircle>
       <Text done={done}>{text}</Text>
-      <Remove done={done}>{<MdDelete></MdDelete>}</Remove>
+      <Remove done={done} onClick={onRemove}>
+        {<MdDelete></MdDelete>}
+      </Remove>
     </TodoItemBlock>
   );
 }
